@@ -41,7 +41,9 @@
  * \brief USB's Clock frequency
  */
 #ifndef CONF_GCLK_USB_FREQUENCY
-#define CONF_GCLK_USB_FREQUENCY 1000000
+// factory // #define CONF_GCLK_USB_FREQUENCY 1000000
+// local ainsu:
+#define CONF_GCLK_USB_FREQUENCY 48000000
 #endif
 
 // <<< end of configuration section >>>
