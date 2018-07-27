@@ -1,4 +1,5 @@
 #include <atmel_start.h>
+#include "thisproject.h" // local include for main.c
 
 /* Many changes: by wa1tnr, July 2018 */
 
@@ -45,7 +46,7 @@ void blinkLEDfast(void) {
 
 void activity_LED_demo(void) {
     init_act_LED();
-    blinkLEDfast();
+    // blinkLEDfast();
 }
 
 int xpmain(void) {
@@ -58,6 +59,8 @@ int main(void)
 {
 	/* Initializes MCU, drivers and middleware */
 	atmel_start_init();
+        USB_0_PORT_init(); // redundant?
+        activity_LED_demo();
 
 	/* Replace with your application code */
 	while (1) {
