@@ -8,6 +8,8 @@ gcc/atmel_start.d
 gcc/atmel_start.o
 gcc/driver_init.d
 gcc/driver_init.o
+gcc/gpio_local.d
+gcc/gpio_local.o
 gcc/examples/
 gcc/hal/
 gcc/hpl/

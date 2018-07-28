@@ -7,7 +7,7 @@
  */
 
 #include "driver_init.h"
-#include <peripheral_clk_config.h>
+#include <peripheral_clk_config.h> // modified  -  wa1tnr 27 JUL 2018
 #include <utils.h>
 #include <hal_init.h>
 #include <hpl_gclk_base.h>
