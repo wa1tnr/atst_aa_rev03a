@@ -146,6 +146,13 @@ void DS_START_signal(void) {
     DS_clock_in_all_zeroes_8bit();
 } // that's 32 bits of zeros
 
+void DS_END_signal(void) {
+    DS_clock_in_all_ones_8bit();
+    DS_clock_in_all_ones_8bit();
+    DS_clock_in_all_ones_8bit();
+    DS_clock_in_all_ones_8bit();
+}
+
 void DS_guard_bits(void) { // three guard bits
     DS_clock_in_data_bit();
     DS_clock_in_data_bit();
@@ -157,8 +164,12 @@ void DS_bright_bits(void) { // haha MSB first
     DS_clock_in_zero_data_bit();
     DS_clock_in_zero_data_bit();
     DS_clock_in_zero_data_bit();
-    DS_clock_in_data_bit(); // not bright at all
     DS_clock_in_zero_data_bit();
+    DS_clock_in_data_bit(); // not bright at all
+}
+
+void DS_send_8_clr_bits(void) { // clock in 8 data bits, all 0's
+    DS_clock_in_all_zeroes_8bit();
 }
 
 void DS_send_8_set_bits(void) { // clock in 8 data bits, all 1's
@@ -175,32 +186,99 @@ void DS_send_8_set_bits(void) { // clock in 8 data bits, all 1's
     DS_clock_in_data_bit();
 }
 
-void DS_color_white(void) { // an 8-bit sequence
+void DS_color_white(void) { // a 32-bit frame
     DS_bright_bits(); // 8 bits
     DS_send_8_set_bits(); // blue
     DS_send_8_set_bits(); // green
     DS_send_8_set_bits(); // red
 }
 
-void DS_send_first_frame(void) {
+void DS_send_oh_seven(void) {
+
+    // blue, in 8 bits 0b00000111:
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_data_bit();
+    DS_clock_in_data_bit();
+    DS_clock_in_data_bit();
+}
+
+void DS_color_cyan(void) { // a 32-bit frame
+
+// following bright_B G R
+
+    DS_bright_bits(); // 8 bits
+
+    DS_send_oh_seven(); // used for blue, here
+    DS_send_oh_seven(); // used for green, here
+
+    DS_send_8_clr_bits(); // red is null - all 0's
+}
+
+void DS_color_blue(void) { // a 32-bit frame
+    DS_bright_bits(); // 8 bits
+
+    DS_send_oh_seven(); // used for blue, here
+
+/*
+    // blue, in 8 bits 0b00000111:
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_data_bit();
+    DS_clock_in_data_bit();
+    DS_clock_in_data_bit();
+*/
+
+
+    DS_send_8_clr_bits();
+    DS_send_8_clr_bits();
+}
+
+void DS_send_first_eight_RGB_dotstar_pixel_specs(void) {
     DS_START_signal(); // 32 bits
 
-    DS_color_white(); // first pixel turns white
-        short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer();
-    DS_color_white();
-        short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer();
-    DS_color_white();
-        short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer();
-    DS_color_white();
+    DS_color_blue();  // first pixel turns blue
+    DS_color_blue();
+    DS_color_blue();
+    DS_color_blue();
+
+    DS_color_blue();
+    DS_color_blue();
+    DS_color_blue();
+    DS_color_blue();
+
+    DS_END_signal();
+}
+
+void DS_send_second_eight_RGB_dotstar_pixel_specs(void) {
+    DS_START_signal();
+
+    DS_color_blue(); DS_color_cyan();
+    DS_color_blue(); DS_color_cyan();
+    DS_color_blue(); DS_color_cyan();
+    DS_color_blue(); DS_color_cyan();
+
+    DS_END_signal();
 }
 
 void DS_sends_demo(void) {
     init_dotstar_gpio();
 
-    DS_send_first_frame();
+    DS_send_first_eight_RGB_dotstar_pixel_specs(); // misnomer - went beyond its .. scope
 
-    // won't display until something else is sent, so:
-    DS_color_white();
+    short_timer(); short_timer(); short_timer();
+    short_timer(); short_timer(); short_timer();
+    short_timer(); short_timer(); short_timer();
+    short_timer(); short_timer(); short_timer();
+    short_timer(); short_timer(); short_timer();
+
+    DS_send_second_eight_RGB_dotstar_pixel_specs();
 }
 
 
