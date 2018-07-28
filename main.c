@@ -83,12 +83,31 @@ void fleck_D7_clock_line(void) {
         loop_vy_short_timer();
 }
 
+void fleck_D6_data_line(void) {
+        raise_DS_DATA();
+        loop_vy_short_timer();
+
+        lower_DS_DATA();
+        loop_vy_short_timer();
+}
+
 void pulse_D7_clock_twice(void) {
     fleck_D7_clock_line();
     loop_vy_short_timer();
     loop_vy_short_timer();
     fleck_D7_clock_line();
     loop_vy_short_timer();
+    loop_vy_short_timer();
+}
+
+void pulse_D6_data_thrice(void) {
+    fleck_D6_data_line();
+
+    fleck_D6_data_line();
+    loop_vy_short_timer();
+    loop_vy_short_timer();
+
+    fleck_D6_data_line();
     loop_vy_short_timer();
 }
 
@@ -99,9 +118,24 @@ void loop_D7_clock(void) {
     }
 }
 
+void loop_D6_data(void) {
+    for(int i = 23; i > 0; i--) {
+        pulse_D6_data_thrice();
+        short_timer();
+        short_timer();
+        short_timer();
+        short_timer();
+    }
+}
+
 void demo_D7_clock(void) {
     init_dotstar_gpio();
     loop_D7_clock();
+}
+
+void demo_D6_data(void) {
+    init_dotstar_gpio();
+    loop_D6_data();
 }
 
 int main(void)
@@ -116,6 +150,7 @@ int main(void)
 
         // D7 logic good - using D13
         // demo_D7_clock();
+        demo_D6_data();
 
         lower_D13();
         long_timer();
