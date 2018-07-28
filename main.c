@@ -1,6 +1,7 @@
 #include <atmel_start.h>
 #include "thisproject.h" // local include for main.c
 #include "gpio_local.h"
+#include "dotstar.h"
 
 /* Many changes: by wa1tnr, July 2018 */
 
@@ -68,13 +69,52 @@ void activity_LED_demo(void) {
     blinkLEDfast();
 }
 
+void loop_vy_short_timer(void) {
+    for(int i = 12; i > 0; i--) {
+        vy_short_timer();
+    }
+}
+
+void fleck_D7_clock_line(void) {
+        raise_DS_CLOCK();
+        loop_vy_short_timer();
+
+        lower_DS_CLOCK();
+        loop_vy_short_timer();
+}
+
+void pulse_D7_clock_twice(void) {
+    fleck_D7_clock_line();
+    loop_vy_short_timer();
+    loop_vy_short_timer();
+    fleck_D7_clock_line();
+    loop_vy_short_timer();
+    loop_vy_short_timer();
+}
+
+void loop_D7_clock(void) {
+    for(int i = 33; i > 0; i--) {
+        pulse_D7_clock_twice();
+        short_timer();
+    }
+}
+
+void demo_D7_clock(void) {
+    init_dotstar_gpio();
+    loop_D7_clock();
+}
+
 int main(void)
 {
 	/* Initializes MCU, drivers and middleware */
 	atmel_start_init();
         // USB_0_PORT_init(); // redundant?
 
-        activity_LED_demo();
+        // testing of D7 logic using physical D13 (the LED)
+        // usual use of D13 commented out during those tests.
+        // activity_LED_demo();
+
+        demo_D7_clock();
 
         lower_D13();
         long_timer();
