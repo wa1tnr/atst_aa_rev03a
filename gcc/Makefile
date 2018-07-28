@@ -57,6 +57,7 @@ hpl/gclk/hpl_gclk.o \
 hal/src/hal_init.o \
 hal/src/hal_usb_device.o \
 main.o \
+gpio_local.o \
 samd21a/gcc/system_samd21.o \
 examples/driver_examples.o \
 driver_init.o \
@@ -83,6 +84,7 @@ OBJS_AS_ARGS +=  \
 "hal/src/hal_init.o" \
 "hal/src/hal_usb_device.o" \
 "main.o" \
+"gpio_local.o" \
 "samd21a/gcc/system_samd21.o" \
 "examples/driver_examples.o" \
 "driver_init.o" \
@@ -114,6 +116,7 @@ DEPS_AS_ARGS +=  \
 "driver_init.d" \
 "samd21a/gcc/system_samd21.d" \
 "main.d" \
+"gpio_local.d" \
 "examples/driver_examples.d" \
 "hal/src/hal_sleep.d" \
 "hal/utils/src/utils_event.d" \
@@ -141,7 +144,7 @@ $(OUTPUT_FILE_PATH): $(OBJS)
 	$(QUOTE)arm-none-eabi-gcc$(QUOTE) -o $(OUTPUT_FILE_NAME).elf $(OBJS_AS_ARGS) -Wl,--start-group -lm -Wl,--end-group -mthumb \
 -Wl,-Map="$(OUTPUT_FILE_NAME).map" --specs=nano.specs -Wl,--gc-sections -mcpu=cortex-m0plus \
  \
--T"../samd21a/gcc/gcc/samd21g18au_flash.ld" \
+-T"../samd21a/gcc/gcc/samd21g18a_flash_with_bootloader.ld" \
 -L"../samd21a/gcc/gcc"
 	@echo Finished building target: $@
 
