@@ -5,12 +5,6 @@
 
 /* Many changes: by wa1tnr, July 2018 */
 
-// #include "sam.h"
-// #include "local_board_init.h"
-// #include "PinMap_local.h"
-// #include "bsp_gpio.h"
-// #include "bsp_neopix.h"
-
 void uSec(void) {
     for (volatile int i = 1; i < 2; i++) { // needs calibration
         // nothing
@@ -27,6 +21,13 @@ void short_timer(void) { // human blinkie timescale
 void vy_short_timer(void) { // human blinkie timescale
     uint32_t on_time  = 2140111222; // it's 2147 something ;)
     for(on_time = 344; on_time > 0; on_time--) {
+        uSec();
+    }
+}
+
+void uber_short_timer(void) { // digital clock/data timescale
+    uint32_t on_time  = 2140111222; // it's 2147 something ;)
+    for(on_time = 23; on_time > 0; on_time--) {
         uSec();
     }
 }
@@ -91,6 +92,98 @@ void fleck_D6_data_line(void) {
         loop_vy_short_timer();
 }
 
+
+void DS_clock_in(void) {
+        raise_DS_CLOCK();   uber_short_timer();
+        lower_DS_CLOCK();   uber_short_timer();
+}
+
+void DS_clock_in_zero_data_bit(void) {
+    lower_DS_DATA();    uber_short_timer();
+    DS_clock_in();
+    lower_DS_DATA();    uber_short_timer();
+}
+
+void DS_clock_in_data_bit(void) {
+    raise_DS_DATA();    uber_short_timer();
+    DS_clock_in();
+    lower_DS_DATA();    uber_short_timer();
+}
+
+void DS_clock_in_all_ones_8bit(void) {
+    DS_clock_in_data_bit();
+    DS_clock_in_data_bit();
+
+    DS_clock_in_data_bit();
+    DS_clock_in_data_bit();
+
+    DS_clock_in_data_bit();
+    DS_clock_in_data_bit();
+
+    DS_clock_in_data_bit();
+    DS_clock_in_data_bit();
+}
+
+void DS_clock_in_all_zeroes_8bit(void) {
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_zero_data_bit();
+
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_zero_data_bit();
+
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_zero_data_bit();
+
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_zero_data_bit();
+}
+
+void DS_START_signal(void) {
+    DS_clock_in_all_zeroes_8bit();
+    DS_clock_in_all_zeroes_8bit();
+
+    DS_clock_in_all_zeroes_8bit();
+    DS_clock_in_all_zeroes_8bit();
+} // that's 32 bits of zeros
+
+void DS_guard_bits(void) { // three guard bits
+    DS_clock_in_data_bit();
+    DS_clock_in_data_bit();
+    DS_clock_in_data_bit();
+}
+
+void DS_color_white_bits(void) { // five data bits, all 1's
+    DS_clock_in_data_bit();
+    DS_clock_in_data_bit();
+    DS_clock_in_data_bit();
+
+    DS_clock_in_data_bit();
+    DS_clock_in_data_bit();
+}
+
+void DS_color_white(void) { // an 8-bit sequence
+    DS_guard_bits();
+    DS_color_white_bits();
+}
+
+void DS_send_first_frame(void) {
+    DS_START_signal(); // 32 bits
+
+    DS_color_white(); // all full frames are 32 bits?
+    DS_color_white();
+    DS_color_white();
+    DS_color_white();
+}
+
+void DS_sends_demo(void) {
+    init_dotstar_gpio();
+
+    DS_send_first_frame();
+
+    // won't display until something else is sent, so:
+    DS_color_white();
+}
+
 void pulse_D7_clock_twice(void) {
     fleck_D7_clock_line();
     loop_vy_short_timer();
@@ -150,7 +243,8 @@ int main(void)
 
         // D7 logic good - using D13
         // demo_D7_clock();
-        demo_D6_data();
+        // demo_D6_data();
+        DS_sends_demo();
 
         lower_D13();
         long_timer();
