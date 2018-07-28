@@ -55,7 +55,7 @@ void raise_DS_DATA(void) {
 	// Set pin direction to output
 	// gpio_set_pin_direction(D6, GPIO_DIRECTION_OUT);
 
-	gpio_set_pin_level(PINN,
+	gpio_set_pin_level(D6,
 	                   // <y> Initial level
 	                   // <id> pad_initial_level
 	                   // <false"> Low
@@ -71,7 +71,7 @@ void lower_DS_DATA(void) {
 	// Set pin direction to output
 	// gpio_set_pin_direction(D6, GPIO_DIRECTION_OUT);
 
-	gpio_set_pin_level(PINN,
+	gpio_set_pin_level(D6,
 	                   // <y> Initial level
 	                   // <id> pad_initial_level
 	                   // <false"> Low
