@@ -10,10 +10,10 @@
 
 // This (incorrect) use of D13 currently in operation.
 
-#define PINN D13 // D7
+#define PINN D13 // D6
 
 void init_dotstar_gpio(void) {
-    gpio_set_pin_direction(PINN, GPIO_DIRECTION_OUT);
+    gpio_set_pin_direction(D7, GPIO_DIRECTION_OUT);
 }
 
 void raise_DS_CLOCK(void) {
@@ -22,7 +22,7 @@ void raise_DS_CLOCK(void) {
 	// Set pin direction to output
 	// gpio_set_pin_direction(D7,  GPIO_DIRECTION_OUT);
 
-	gpio_set_pin_level(PINN,
+	gpio_set_pin_level(D7,
 	                   // <y> Initial level
 	                   // <id> pad_initial_level
 	                   // <false"> Low
@@ -38,7 +38,7 @@ void lower_DS_CLOCK(void) {
 	// Set pin direction to output
 	// gpio_set_pin_direction(D7,  GPIO_DIRECTION_OUT);
 
-	gpio_set_pin_level(PINN,
+	gpio_set_pin_level(D7,
 	                   // <y> Initial level
 	                   // <id> pad_initial_level
 	                   // <false"> Low
