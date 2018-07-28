@@ -114,7 +114,8 @@ int main(void)
         // usual use of D13 commented out during those tests.
         // activity_LED_demo();
 
-        demo_D7_clock();
+        // D7 logic good - using D13
+        // demo_D7_clock();
 
         lower_D13();
         long_timer();
