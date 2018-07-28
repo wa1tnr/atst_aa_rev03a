@@ -1,21 +1,33 @@
+NOTE: This file will be unmaintained, moving forward.
+
+Please refer to earlier versions of the program (atst_aa_rev0
+or atst_aa_rev01a and branches testing-aa or testing-bb).
+
+28 July, 2018 - 16:01 UTC
+
+________
+
+
+
 These instructions are mainly for the novice who does not
 know how to 'git checkout my_branch' (on their local machine,
 at the command line).
 
-The SAMD21 program is currently functional 'on branch testing-aa'
-rather than 'on branch master' (use 'git status' to verify the
-current working branch, once the repository has been cloned to
-you local hard disk drive).
+The SAMD21 program is currently functional 'on branch testing-bb'
+(an earlier version is functional 'on branch master').
+
+Use 'git status' to verify the current working branch, once the
+repository has been cloned to your local hard disk drive).
 
 
 Clone - Compile - Install
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
- $ git clone https://github.com/wa1tnr/atst_aa_rev0.git 
+ $ git clone https://github.com/wa1tnr/atst_aa_rev01a.git
 
- $ cd atst_aa_rev0
+ $ cd atst_aa_rev01a
 
- $ git checkout testing-aa 
+ $ git checkout testing-bb
 
  $ cd ./gcc
 
@@ -57,4 +69,4 @@ that's passed on to bossac:
    205          ./scripts/_bossac_local.sh ./AtmelStart.bin
  $ 
 
-Sat Jul 28 15:09:35 UTC 2018
+Sat Jul 28 16:03:24 UTC 2018
