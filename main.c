@@ -152,8 +152,22 @@ void DS_guard_bits(void) { // three guard bits
     DS_clock_in_data_bit();
 }
 
-void DS_color_white_bits(void) { // five data bits, all 1's
+void DS_bright_bits(void) { // haha MSB first
+    DS_guard_bits(); // all 1's
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_zero_data_bit();
+    DS_clock_in_data_bit(); // not bright at all
+    DS_clock_in_zero_data_bit();
+}
+
+void DS_send_8_set_bits(void) { // clock in 8 data bits, all 1's
     DS_clock_in_data_bit();
+    DS_clock_in_data_bit();
+
+    DS_clock_in_data_bit();
+    DS_clock_in_data_bit();
+
     DS_clock_in_data_bit();
     DS_clock_in_data_bit();
 
@@ -162,16 +176,21 @@ void DS_color_white_bits(void) { // five data bits, all 1's
 }
 
 void DS_color_white(void) { // an 8-bit sequence
-    DS_guard_bits();
-    DS_color_white_bits();
+    DS_bright_bits(); // 8 bits
+    DS_send_8_set_bits(); // blue
+    DS_send_8_set_bits(); // green
+    DS_send_8_set_bits(); // red
 }
 
 void DS_send_first_frame(void) {
     DS_START_signal(); // 32 bits
 
-    DS_color_white(); // all full frames are 32 bits?
+    DS_color_white(); // first pixel turns white
+        short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer();
     DS_color_white();
+        short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer();
     DS_color_white();
+        short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer(); short_timer();
     DS_color_white();
 }
 
@@ -183,6 +202,13 @@ void DS_sends_demo(void) {
     // won't display until something else is sent, so:
     DS_color_white();
 }
+
+
+
+
+
+
+
 
 void pulse_D7_clock_twice(void) {
     fleck_D7_clock_line();
@@ -226,10 +252,12 @@ void demo_D7_clock(void) {
     loop_D7_clock();
 }
 
+/*
 void demo_D6_data(void) {
     init_dotstar_gpio();
     loop_D6_data();
 }
+*/
 
 int main(void)
 {
