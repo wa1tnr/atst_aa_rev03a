@@ -1,17 +1,29 @@
 # atst_aa_rev01a
 
-Changes from (previous repository's) branch testing-aa
-have been brought forward to be merged; the results are
-now On branch master.
+testing-ee current.  (Sunday, 29 July at 02:20 UTC)
 
-Thus, branch master has a functioning LED blinkie.
+This branch (testing-ee) has a functional Pimoroni Blinkt
+demonstration program.  The Blinkt uses APA102 ('dotstar')
+RGB led technology.
 
-Moving forward, branch testing-aa is retired.  New program
-development will be on branch testing-bb.
+See: http://adafru.it/3341 - APA102
+See: http://adafru.it/3195 - Pimoroni Blinkt!
+
+Technique used is to bitbang the Blinkt, using GPIO, just as
+one would for a shift register.
+
+Simple.  And it works.
+
+older news:
+
+Branch master has a functioning LED blinkie.
+
+Moving forward, branch testing-dd is retired.  New program
+development will be on branch testing-ee.
 
 Current program is good for the Adafruit Feather M0 Express,
 their CPX and Metro M0 Express (most likely will function
 with any ATSAMD21G18-AU board that has a traditional D13 LED
 mapped onto PA17).
 
-Sat Jul 28 15:45:21 UTC 2018
+Sun Jul 29 02:19:44 UTC 2018
