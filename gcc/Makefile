@@ -58,6 +58,7 @@ hal/src/hal_init.o \
 hal/src/hal_usb_device.o \
 main.o \
 gpio_local.o \
+dotstar.o \
 samd21a/gcc/system_samd21.o \
 examples/driver_examples.o \
 driver_init.o \
@@ -85,6 +86,7 @@ OBJS_AS_ARGS +=  \
 "hal/src/hal_usb_device.o" \
 "main.o" \
 "gpio_local.o" \
+"dotstar.o" \
 "samd21a/gcc/system_samd21.o" \
 "examples/driver_examples.o" \
 "driver_init.o" \
@@ -117,6 +119,7 @@ DEPS_AS_ARGS +=  \
 "samd21a/gcc/system_samd21.d" \
 "main.d" \
 "gpio_local.d" \
+"dotstar.d" \
 "examples/driver_examples.d" \
 "hal/src/hal_sleep.d" \
 "hal/utils/src/utils_event.d" \
