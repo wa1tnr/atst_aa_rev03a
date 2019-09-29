@@ -3,6 +3,14 @@ note.txt
 IMPORTANT - this Release (0.1.0) is untested, but
 assumed to function correctly.
 
+Later - tested and seems to function fine, including
+the change in path to bossac.  New bossac is quite 
+a bit larger, and updates the old one from 2016.
+
 Gotchas: bossac assumed to have changed revision,
 in the interim.  This program likely not to function
 until taking that into account.  29 September 2019
+
+Revised: this has been taken into account.  Old
+bossac untested; assumed new one was desirable and
+simply changed over to it.  29 Sep 2019, 22:58z
