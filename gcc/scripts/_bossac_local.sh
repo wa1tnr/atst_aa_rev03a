@@ -4,8 +4,12 @@
 
 if ! [ $1 ]; then
    echo no args.  Exiting; fi
-   ~/.arduino15/packages/arduino/tools/bossac/1.7.0/bossac \
+   ~/.arduino15/packages/arduino/tools/bossac/1.7.0-arduino3/bossac \
     -i -d --port=/dev/ttyACM0 -U true -i -e -w -v ${1} -R  # .bin not .elf
 
 exit 0
+
+# September 2019
+# old payload was:
+# ~/.arduino15/packages/arduino/tools/bossac/1.7.0/bossac \
 
