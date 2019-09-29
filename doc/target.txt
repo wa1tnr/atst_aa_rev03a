@@ -1,0 +1,18 @@
+Adafruit Metro M0 using GPIO D6 and D7 to talk to
+Pimoroni Blinkt module (an APA102 array x8 RGB LEDs).
+
+ATSAMD21G18A
+
+This is untested on 29 September 2019, and is inferred
+from two facts:
+
+ * The Metro M0 is still connected to the Blinkt,
+   in a current project
+
+ * Firmware developed in September 2019 (a day
+   or two ago) in the Arduino IDE, modeled on
+   this very repository, runs fine.
+
+Hadn't noticed ../current_targets when this was written.
+
+Good sanity check. ;) 29 September 2019
