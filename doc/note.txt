@@ -2,3 +2,7 @@ note.txt
 
 IMPORTANT - this Release (0.1.0) is untested, but
 assumed to function correctly.
+
+Gotchas: bossac assumed to have changed revision,
+in the interim.  This program likely not to function
+until taking that into account.  29 September 2019
