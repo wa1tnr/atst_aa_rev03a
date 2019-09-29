@@ -1,8 +1,10 @@
 Release: 0.1.0 testing-ee
 
-Sun Sep 29 22:06:08 UTC 2019
+Sun Sep 29 22:15:16 UTC 2019
 
-On branch testing-ee
+On branch develop (was immediately prior, testing-ee)
+
+commits 6359a67, 6136765 trivial and already made, prior to this one:
 
 commit 4b192e725907a2a1d9281494af1226d8c28e53f1
 Author: wa1tnr
