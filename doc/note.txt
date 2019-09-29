@@ -1,0 +1,4 @@
+note.txt
+
+IMPORTANT - this Release (0.1.0) is untested, but
+assumed to function correctly.
