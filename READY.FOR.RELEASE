@@ -1,0 +1,34 @@
+Release: 0.1.0 testing-ee
+
+Sun Sep 29 22:06:08 UTC 2019
+
+On branch testing-ee
+
+commit 4b192e725907a2a1d9281494af1226d8c28e53f1
+Author: wa1tnr
+Date:   Sun Sep 29 22:02:39 2019 +0000
+
+    Working bossac recent Arduino IDE presumed
+    
+    TESTED.
+    
+    make clean ; make ;  make install  is correct here.
+    
+    Access to the Reset button on the Metro M0 is required.
+    
+            modified:   _bossac_local.sh
+    
+    On branch develop
+
+This is a brief release, presumed to be trouble-free
+(as compared with during its development, quite a
+while ago).  TESTED.  make clean ; make ; make install
+is the usual workflow.  Must be cd gcc for this to work.
+
+gcc (eabi) not updated in the recent past (several
+months at least).  May require reworking for more
+recent gcc.
+
+ $ arm-none-eabi-gcc --version
+arm-none-eabi-gcc (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]
+Copyright (C) 2017 Free Software Foundation, Inc.
