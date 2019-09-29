@@ -1,0 +1,26 @@
+
+ $ git merge release/0.1.0 
+Updating 7b6e751..9fd00ee
+Fast-forward
+ READY.FOR.RELEASE            | 36 ++++++++++++++++++++++++++++++++++++
+ doc/note.txt                 |  8 ++++++++
+ doc/target.txt               | 18 ++++++++++++++++++
+ gcc/scripts/_bossac_local.sh |  6 +++++-
+ 4 files changed, 67 insertions(+), 1 deletion(-)
+ create mode 100644 READY.FOR.RELEASE
+ create mode 100644 doc/note.txt
+ create mode 100644 doc/target.txt
+
+seems okay 29 Sep 2019 22:32z
+
+ $ git branch
+  develop
+* master
+  release/0.1.0
+  testing-ee
+
+At this hour, testing-ee is the default branch on github.
+Not seeing any impacts, thus far.  Just the pull request
+(issued on github) looked odd, since it defaulted to
+testing-ee for the base, and had to be manually changed
+to master, to compare with release/0.1.0 for the PR.
