@@ -1,3 +1,26 @@
+November 2019 update:
+
+Tested.  It's the same physical project (Metro M0 Express
+with Pimoroni Blinkt on D6 D7).
+
+Works fine (15 Nov 2019) in this AtmelStart based program,
+which is stored in this repository:
+
+    https://github.com/wa1tnr/atst_aa_rev03a.git
+
+in branch:
+    testing-ee-aa-
+
+and modified on 15 November 2019 (trivial color mod stored as
+another variant of main.c here).
+
+Seems to run at 1 mhz CPU freq (OSC8M).
+
+See ../config/hpl_gclk_config.h
+
+
+Previous entry:
+
 Adafruit Metro M0 using GPIO D6 and D7 to talk to
 Pimoroni Blinkt module (an APA102 array x8 RGB LEDs).
 
